@@ -36,6 +36,11 @@ stages:
              npm install
              npm run test
           continueOnError: true
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: '$(Pipeline.Workspace)/backend/coverage'
+            artifact: 'BackendCoverage'
+            publishLocation: 'pipeline'
         - task: reportgenerator@4
           displayName: 'Generate coverage report'
           inputs:
